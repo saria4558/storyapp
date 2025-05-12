@@ -2,83 +2,90 @@
     "id": "/#/",
     "start_url": "/#/",
     "scope": "/",
-    "name": "CityCare App",
-    "short_name": "CityCare",
-    "description": "Aplikasi pelaporan kerusakan fasilitas umum yang memungkinkan warga Indonesia melaporkan masalah secara langsung kepada pemerintah kota. Dengan aplikasi ini, komunikasi antara warga dan pemerintah menjadi lebih efisien dalam menangani dan menindaklanjuti laporan kerusakan fasilitas umum.",
+    "name": "Story App",
+    "short_name": "StoryApp",
+    "description": "AStoryApp adalah aplikasi berbagi cerita yang memungkinkan siapa saja untuk membagikan momen, pengalaman, dan inspirasi kepada dunia. Melalui StoryApp, pengguna dapat menjelajahi beragam kisah menarik dari orang lain, menyimpan cerita favorit ke dalam daftar khusus, serta menghapusnya kapan saja sesuai keinginan. Dengan antarmuka yang sederhana dan interaktif, StoryApp menjadi ruang terbuka untuk saling terhubung melalui cerita.",
     "display": "standalone",
     "background_color": "#FFFFFF",
-    "theme_color": "#d97706",
+    "theme_color": "#154558",
     "icons": [
       {
-        "src": "images/icons/icon-x144.png",
+        "src": "images/logo.png",
         "type": "image/png",
         "sizes": "144x144",
         "purpose": "any"
       },
       {
-        "src": "images/icons/maskable-icon-x48.png",
+        "src": "images/logo.png",
         "type": "image/png",
         "sizes": "48x48",
         "purpose": "maskable"
       },
       {
-        "src": "images/icons/maskable-icon-x96.png",
+        "src": "images/logo.png",
         "type": "image/png",
         "sizes": "96x96",
         "purpose": "maskable"
       },
       {
-        "src": "images/icons/maskable-icon-x192.png",
+        "src": "images/logo.png",
         "type": "image/png",
         "sizes": "192x192",
         "purpose": "maskable"
       },
       {
-        "src": "images/icons/maskable-icon-x384.png",
+        "src": "images/logo.png",
         "type": "image/png",
         "sizes": "384x384",
         "purpose": "maskable"
       },
       {
-        "src": "images/icons/maskable-icon-x512.png",
+        "src": "images/logo.png",
         "type": "image/png",
         "sizes": "512x512",
         "purpose": "maskable"
       }
     ],
     "screenshots": [
+
     {
-      "src": "images/screenshots/CityCareApp_001.png",
+      "src": "images/screenshots/peta-web.png",
       "sizes": "1920x1043",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
-      "src": "images/screenshots/CityCareApp_002.png",
+      "src": "images/screenshots/list-web.png",
       "sizes": "1920x1043",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
-      "src": "images/screenshots/CityCareApp_003.png",
+      "src": "images/screenshots/list-save-web.png",
       "sizes": "1920x1043",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
-      "src": "images/screenshots/CityCareApp_004.png",
+      "src": "images/screenshots/list-map.png",
       "sizes": "1080x2280",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "images/screenshots/CityCareApp_005.png",
+      "src": "images/screenshots/list-save.png",
       "sizes": "1080x2280",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "images/screenshots/CityCareApp_006.png",
+      "src": "images/screenshots/add.png",
+      "sizes": "1080x2280",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "images/screenshots/add-map.png",
       "sizes": "1080x2280",
       "type": "image/png",
       "form_factor": "narrow"

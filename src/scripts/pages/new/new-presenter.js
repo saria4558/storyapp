@@ -1,68 +1,76 @@
 export default class NewPresenter {
-  #view;
-  #model;
-
-  constructor({ view, model }) {
-    this.#view = view;
-    this.#model = model;
-  }
-
-  async showNewFormMap() {
-    this.#view.showMapLoading();
-    try {
-      await this.#view.initialMap();
-    } catch (error) {
-      console.error('showNewFormMap: error:', error);
-    } finally {
-      this.#view.hideMapLoading();
+    #view;
+    #model;
+  
+    constructor({ view, model }) {
+      this.#view = view;
+      this.#model = model;
     }
-  }
-
-  async postNewReport({ title, damageLevel, description, evidenceImages, latitude, longitude }) {
-    this.#view.showSubmitLoadingButton();
-
-    try {
-      const data = {
-        title: title,
-        damageLevel: damageLevel,
-        description: description,
-        evidenceImages: evidenceImages,
-        latitude: latitude,
-        longitude: longitude,
-      };
-      const response = await this.#model.storeNewReport(data);
-
-      if (!response.ok) {
-        console.error('postNewReport: response:', response);
-        this.#view.storeFailed(response.message);
-        return;
+  
+    async showNewFormMap() {
+      this.#view.showMapLoading();
+      try {
+        await this.#view.initialMap();
+      } catch (error) {
+        console.error('showNewFormMap: error:', error);
+      } finally {
+        this.#view.hideMapLoading();
       }
-
-      // No need to wait response
-      this.#notifyToAllUser(response.data.id);
-
-      this.#view.storeSuccessfully(response.message, response.data);
-    } catch (error) {
-      console.error('postNewReport: error:', error);
-      this.#view.storeFailed(error.message);
-    } finally {
-      this.#view.hideSubmitLoadingButton();
     }
-  }
-
-  async #notifyToAllUser(reportId) {
-    try {
-      const response = await this.#model.sendReportToAllUserViaNotification(reportId);
-
-      if (!response.ok) {
-        console.error('#notifyToAllUser: response:', response);
-        return false;
+  
+    async postNewStory({ description, photo, latitude, longitude }) {
+      this.#view.showSubmitLoadingButton();
+      try {
+        const formData = new FormData();
+        formData.append('description', description);
+        formData.append('photo', photo);
+        if (latitude) formData.append('lat', latitude);
+        if (longitude) formData.append('lon', longitude);
+  
+        const response = await this.#model.storeNewStory(formData);
+  
+        if (!response || response.error) {
+          this.#view.storeFailed(response?.message || 'Gagal menyimpan laporan.');
+          return;
+        }
+  
+        this.#view.storeSuccessfully(response.message);
+      } catch (error) {
+        console.error('postNewStory: error:', error);
+        this.#view.storeFailed(error.message);
+      } finally {
+        this.#view.hideSubmitLoadingButton();
       }
-
-      return true;
-    } catch (error) {
-      console.error('#notifyToAllUser: error:', error);
-      return false;
     }
+    async submitForm({ description, evidenceImages, latitude, longitude }) {
+        this.#view.showSubmitLoadingButton();
+      
+        try {
+          const formData = new FormData();
+          formData.append('description', description);
+      
+          if (latitude) formData.append('lat', latitude);
+          if (longitude) formData.append('lon', longitude);
+      
+          evidenceImages.forEach((image, index) => {
+            formData.append(`photo`, image); 
+          });
+      
+          const response = await this.#model.storeNewStory(formData);
+      
+          if (!response || response.error) {
+            this.#view.storeFailed(response?.message || 'Gagal menyimpan laporan.');
+            return;
+          }
+      
+          this.#view.storeSuccessfully(response.message);
+        } catch (error) {
+          console.error('submitForm error:', error);
+          this.#view.storeFailed(error.message);
+        } finally {
+          this.#view.hideSubmitLoadingButton();
+        }
+      }
+      
   }
-}
+  

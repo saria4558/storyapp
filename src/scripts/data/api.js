@@ -16,7 +16,11 @@ const ENDPOINTS = {
   SUBSCRIBE: `${BASE_URL}/notifications/subscribe`,
   UNSUBSCRIBE: `${BASE_URL}/notifications/subscribe`,
 };
-
+export async function getData() {
+  
+  const fetchResponse = await fetch(ENDPOINTS.STORY_LIST); 
+  return await fetchResponse.json();
+}
 // === Auth ===
 export async function getRegistered({ name, email, password }) {
   const data = JSON.stringify({ name, email, password });
@@ -50,34 +54,29 @@ export async function getLogin({ email, password }) {
   };
 }
 
-// === Story ===
-export async function getData() {
-  const fetchResponse = await fetch(ENDPOINTS.STORY_LIST);
-  return await fetchResponse.json();
-}
 
-export async function getAllReports() {
+export async function getAllStories() {
   const token = getToken();
 
-  const fetchResponse = await fetch(`${ENDPOINTS.STORY_LIST}?page=1&size=10`, {
+  const fetchResponse = await fetch(ENDPOINTS.STORY_LIST, {
     headers: { Authorization: `Bearer ${token}` },
   });
-
   const json = await fetchResponse.json();
+
   return {
     ...json,
     ok: fetchResponse.ok,
   };
 }
 
-export async function getReportById(id) {
+export async function getStoryById(id) {
   const token = getToken();
 
   const fetchResponse = await fetch(ENDPOINTS.STORY_DETAIL(id), {
     headers: { Authorization: `Bearer ${token}` },
   });
-
   const json = await fetchResponse.json();
+
   return {
     ...json,
     ok: fetchResponse.ok,

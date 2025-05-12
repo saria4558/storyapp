@@ -73,6 +73,11 @@ export default class Map {
    * https://stackoverflow.com/questions/43431550/how-can-i-invoke-asynchronous-code-within-a-constructor
    * */
   static async build(selector, options = {}) {
+    const container = document.querySelector(selector);
+  if (container && container._leaflet_id != null) {
+    container._leaflet_id = null;  // Hapus referensi Leaflet yang lama
+    container.innerHTML = '';      // Bersihkan isi peta jika ada
+  }
     if ('center' in options && options.center) {
       return new Map(selector, options);
     }
