@@ -272,7 +272,7 @@ export default class NewPage {
   storeSuccessfully(message) {
     console.log(message);
     this.clearForm();
-    location.href = '/';
+    location.href = '#/';
   }
 
   storeFailed(message) {
